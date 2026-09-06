@@ -1,0 +1,116 @@
+{
+  "name": "standard",
+  "description": "Realistic working portfolio with bio, projects, mission updates, contact details, and Edumaxim content.",
+  "create": {
+    "PortfolioData": [
+      {
+        "_alias": "portfolio_1",
+        "name": "Starship Portfolio - {{testRunShortId}}"
+      }
+    ],
+    "About": [
+      {
+        "_alias": "about_1",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "title": "Scott Harvey-Whittle",
+        "image": "https://picsum.photos/seed/{{testRunShortId}}/200/200",
+        "bio": "I am a digital solutions specialist focused on automation and web development.",
+        "inspiration": "Inspired by the efficiency and aesthetics of 24th-century starship interfaces.",
+        "closing": "Engage and explore."
+      }
+    ],
+    "Project": [
+      {
+        "_alias": "project_1",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "stardate": "2023.150",
+        "title": "LCARS UI Framework",
+        "desc": "A comprehensive React component library for building Trek-inspired interfaces.",
+        "url": "https://github.com/shw-{{testRunShortId}}/lcars-ui"
+      },
+      {
+        "_alias": "project_2",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "stardate": "2023.285",
+        "title": "Automation Engine",
+        "desc": "A Node.js backend for scheduling and executing complex task workflows.",
+        "url": "https://github.com/shw-{{testRunShortId}}/auto-engine"
+      },
+      {
+        "_alias": "project_3",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "stardate": "2024.012",
+        "title": "Portfolio v2",
+        "desc": "The latest iteration of this portfolio site, featuring a full CMS admin panel.",
+        "url": "https://portfolio-{{testRunShortId}}.shw.test"
+      }
+    ],
+    "MissionUpdate": [
+      {
+        "_alias": "mission_1",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "stardate": "2024.310",
+        "update_title": "Core Systems Update",
+        "update_desc": "Migrated the data layer to a more robust state management system."
+      },
+      {
+        "_alias": "mission_2",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "stardate": "2024.325",
+        "update_title": "New Client Onboarding",
+        "update_desc": "Commenced automation project for a major logistics firm."
+      },
+      {
+        "_alias": "mission_3",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "stardate": "2024.340",
+        "update_title": "Security Patch",
+        "update_desc": "Implemented enhanced authentication protocols for the admin sector."
+      }
+    ],
+    "Contact": [
+      {
+        "_alias": "contact_1",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "email": "admin+{{testRunShortId}}@shwdigitalservices.site",
+        "github": "https://github.com/scott-{{testRunShortId}}",
+        "linkedin": "https://linkedin.com/in/scott-hw-{{testRunShortId}}"
+      }
+    ],
+    "Edumaxim": [
+      {
+        "_alias": "edumaxim_1",
+        "portfolioDataId": {
+          "_ref": "portfolio_1"
+        },
+        "title": "Edumaxim",
+        "subtitle": "Learning Management System",
+        "description": "A platform designed to maximize educational outcomes through interactive content.",
+        "mission": "To empower educators with cutting-edge digital tools.",
+        "features": [
+          "Course Builder",
+          "Real-time Analytics",
+          "Student Portal"
+        ],
+        "platform_link": "https://edumaxim-{{testRunShortId}}.test",
+        "call_to_action": "ACCESS PLATFORM"
+      }
+    ]
+  }
+}

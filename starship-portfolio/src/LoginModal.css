@@ -1,0 +1,116 @@
+/* Login Modal Styling - Star Trek Theme */
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.login-modal {
+  background: linear-gradient(135deg, #1a1f35 0%, #0d1117 100%);
+  border: 2px solid #0ea5e9;
+  border-radius: 4px;
+  padding: 30px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
+}
+
+.login-modal h2 {
+  color: #0ea5e9;
+  font-family: 'Orbitron', 'Roboto Mono', monospace;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #0ea5e9;
+  font-family: 'Orbitron', 'Roboto Mono', monospace;
+  margin-bottom: 8px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  background: #0d1117;
+  border: 1px solid #0ea5e9;
+  border-radius: 4px;
+  color: #e0eaff;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+.error-message {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 12px;
+  background: #0ea5e9;
+  color: #0d1117;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Orbitron', 'Roboto Mono', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-group button:hover:not(:disabled) {
+  background: #38bdf8;
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.7);
+  transform: translateY(-2px);
+}
+
+.button-group button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-group button[type="button"] {
+  background: #374151;
+  color: #9ca3af;
+}
+
+.button-group button[type="button"]:hover:not(:disabled) {
+  background: #4b5563;
+  box-shadow: 0 0 15px rgba(75, 85, 99, 0.5);
+}

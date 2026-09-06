@@ -1,0 +1,96 @@
+{
+    "about": {
+        "title": "CAPTAIN'S LOG: SCOTT HARVEY-WHITTLE",
+        "image": "WIN_20231204_01_32_43_Pro.jpg",
+        "bio": "My designation is Scott Harvey-Whittle, currently assigned to The Open University. My primary directive is the completion of a BSc (Honours) in Computing and IT.",
+        "inspiration": "Inspired by the voyages of the U.S.S. Voyager, my personal mission is one of perpetual learning and exploration. I am committed to navigating the vast expanse of technology and bringing innovative projects from the conceptual stage into the public domain.",
+        "closing": "The final frontier is knowledge, and my journey is to continuously push its boundaries."
+    },
+    "projects": [
+        {
+            "stardate": "2025.Q3",
+            "title": "Starship Portfolio Interface",
+            "desc": "After extensive deep-space reconnaissance, Command issued a priority directive: establish a new communications hub. This project required navigating uncharted sectors of React and TypeScript, facing numerous temporal anomalies and subspace distortions. After a long voyage through the debugging nebula, the interface is now fully operational.",
+            "url": "https://github.com/owner-scotthwcouk/owner-scotthwcouk.github.io"
+        },
+        {
+            "stardate": "2025.Q2",
+            "title": "Code Institute 5 Day Challenge",
+            "desc": "Mission Directive: A 5-day rapid deployment exercise to construct a functional web interface. HTML & CSS protocols calibrated, semantic tags implemented, secure links established.",
+            "url": "https://github.com/Scott-HW-OU/code-institute-5-day-coding-challenge-"
+        },
+        {
+            "stardate": "2025.Q1",
+            "title": "Cheat Sheets",
+            "desc": "Recognizing a tactical need for immediate access to critical information, I commissioned the Cheatsheet Databank. This central repo aids swift reference for Markdown, programming dialects and protocols.",
+            "url": "https://github.com/Scott-HW-OU/Cheat-Sheets"
+        },
+        {
+            "stardate": "2025.Q1",
+            "title": "MathTool",
+            "desc": "During initial training, I engineered a tactical mathematics simulator. The program engages users with rapid-response calculations, logging accuracy and efficiency for mission records.",
+            "url": "https://github.com/Scott-HW-OU/MathTool"
+        }
+    ],
+    "mission_update": [
+        {
+            "stardate": "2023.10",
+            "update_title": "ENROLMENT CONFIRMED: BSc (Honours) in Computing and IT",
+            "update_desc": "Intelligence from the 'IT Job Market' sector revealed a recurring prerequisite: certification in Computing and IT. Commissioned to a long-term mission with the Open University, commencing Stardate 2024.02."
+        },
+        {
+            "stardate": "2024.02",
+            "update_title": "Initial Training: MU123 Discovering Mathematics",
+            "update_desc": "Required navigation through a nebula of complex formulas; proved formidable."
+        },
+        {
+            "stardate": "2024.04",
+            "update_title": "Directive: TM111 Intro to Technology, Part 1",
+            "update_desc": "Foundational schematics delivered; advanced protocols (Python) in Part 2 planned."
+        },
+        {
+            "stardate": "2024.08 - 2025.03",
+            "update_title": "TM112 Project Phase",
+            "update_desc": "Initiated and successfully concluded; marked operational milestone."
+        },
+        {
+            "stardate": "2025.08",
+            "update_title": "Integration of TM112, TM129, TM252",
+            "update_desc": "Cleared for Level 2 study, advancing operational standards."
+        },
+        {
+            "stardate": "2025.09",
+            "update_title": "Current Directives",
+            "update_desc": "Level 2 operations underway, new directives: M250 (Java), TM257 (Cisco Networking, Part 1)."
+        },
+        {
+            "stardate": "2026",
+            "update_title": "Charting the Final Frontier",
+            "update_desc": "Next phase: advanced strategic training, Level 3 protocols, final clearance preparation."
+        },
+        {
+            "stardate": "2027",
+            "update_title": "Capstone Mission: TM470",
+            "update_desc": "Computing and IT Project. Completion signifies fulfillment of primary directive; graduation eligibility."
+        }
+    ],
+    "contact": {
+        "email": "scott@scott-hw.online",
+        "github": "https://github.com/Scott-HW-OU",
+        "linkedin": "https://linkedin.com/in/sphw"
+    },
+      "edumaxim": {
+    "title": "EDUMAXIM LEARNING VESSEL",
+    "subtitle": "Advanced Technology Training Platform",
+    "description": "Calibrating Educational Coordinates... Welcome to Edumaxim, a state-of-the-art learning platform designed to navigate the vast expanse of technology education. Like the USS Voyager charting unknown territories, Edumaxim guides learners through uncharted waters of IT expertise, programming paradigms, and digital innovation.",
+    "mission": "Our mission is to provide comprehensive, hands-on training in modern technology frameworks. Whether you're embarking on your first coding expedition or advanced deployment protocols, Edumaxim's curriculum is engineered to accelerate your progression through the technology frontier.",
+    "features": [
+      "Interactive coding challenges and real-time feedback systems",
+      "Structured learning pathways aligned with industry standards",
+      "Hands-on projects that bridge theoretical knowledge and practical application",
+      "Community support and collaborative learning environments"
+    ],
+    "platform_link": "https://edu.scott-hw.online/",
+    "call_to_action": "Embark on Your Learning Voyage"
+  }
+}
