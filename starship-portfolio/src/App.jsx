@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Admin from "./Admin";
 import LoginModal from "./LoginModal";
+import { sortByStardate } from "./portfolioData";
 import "./App.css";
 
 function App() {
@@ -89,7 +90,7 @@ function App() {
         <div className="projects-section">
           <h2>PROJECTS</h2>
           <div className="projects-grid">
-            {section.map((project, index) => (
+            {sortByStardate(section).map((project, index) => (
               <div key={index} className="project-card">
                 <div className="project-stardate">{project.stardate}</div>
                 <h3>{project.title}</h3>
@@ -116,7 +117,7 @@ function App() {
         <div className="mission-section">
           <h2>MISSION UPDATES</h2>
           <div className="mission-timeline">
-            {section.map((update, index) => (
+            {sortByStardate(section).map((update, index) => (
               <div key={index} className="mission-item">
                 <div className="mission-stardate">{update.stardate}</div>
                 <h3>{update.update_title}</h3>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Admin.css';
-import { saveAbout, saveContact, saveMissionUpdate, saveProject } from './portfolioData';
+import { saveAbout, saveContact, saveEduMaxim, saveMissionUpdate, saveProject, sortByStardate } from './portfolioData';
 
 function Admin({ onLogout, onDataChange }) {
     const [data, setData] = useState(null);
@@ -55,6 +55,8 @@ function Admin({ onLogout, onDataChange }) {
             setEditingItem({ ...data.about });
         } else if (activeTab === 'contact') {
             setEditingItem({ ...data.contact });
+        } else if (activeTab === 'edumaxim') {
+            setEditingItem({ ...data.edumaxim, features: [...(data.edumaxim.features || [])] });
         }
         setShowModal(true);
     };
@@ -77,6 +79,7 @@ function Admin({ onLogout, onDataChange }) {
         else if (activeTab === 'mission_update') next = saveMissionUpdate(data, editingItem);
         else if (activeTab === 'about') next = saveAbout(data, editingItem);
         else if (activeTab === 'contact') next = saveContact(data, editingItem);
+        else if (activeTab === 'edumaxim') next = saveEduMaxim(data, editingItem);
         if (await persist(next)) closeModal();
     };
 
@@ -92,6 +95,18 @@ function Admin({ onLogout, onDataChange }) {
         if (!selectedItems.length) return;
         const next = { ...data, [activeTab]: data[activeTab].filter((_, index) => !selectedItems.includes(index)) };
         if (await persist(next)) setSelectedItems([]);
+    };
+
+    const handleDeleteSingleton = async () => {
+        const empty = activeTab === 'about'
+            ? { title: '', image: '', bio: '', inspiration: '', closing: '' }
+            : activeTab === 'contact'
+                ? { email: '', github: '', linkedin: '' }
+                : { title: '', subtitle: '', description: '', mission: '', features: [], platform_link: '', call_to_action: '' };
+        const next = activeTab === 'about' ? saveAbout(data, empty)
+            : activeTab === 'contact' ? saveContact(data, empty)
+                : saveEduMaxim(data, empty);
+        if (await persist(next)) setStatusMessage('Entry deleted.');
     };
 
     if (!data) return <div role="status">{statusMessage || 'LOADING DATA...'} <button onClick={fetchData}>Retry</button><button onClick={onLogout}>Exit</button></div>;
@@ -128,15 +143,26 @@ function Admin({ onLogout, onDataChange }) {
                     >
                         Contact
                     </button>
+                    <button
+                        className={`tab-button ${activeTab === 'edumaxim' ? 'active' : ''}`}
+                        onClick={() => { setActiveTab('edumaxim'); setSelectedItems([]); }}
+                    >
+                        Edumaxim
+                    </button>
                 </div>
 
                 <div className="admin-actions">
                     <button className="btn btn-primary" onClick={openNewModal}>
-                        + NEW {activeTab === 'projects' ? 'PROJECT' : activeTab === 'mission_update' ? 'MISSION' : 'ENTRY'}
+                        + {activeTab === 'projects' ? 'NEW PROJECT' : activeTab === 'mission_update' ? 'NEW MISSION' : activeTab === 'edumaxim' ? 'EDIT EDUMAXIM' : `EDIT ${activeTab.toUpperCase()}`}
                     </button>
                     {(activeTab === 'projects' || activeTab === 'mission_update') && selectedItems.length > 0 && (
                         <button className="btn btn-danger" onClick={handleDeleteSelected}>
                             DELETE SELECTED ({selectedItems.length})
+                        </button>
+                    )}
+                    {['about', 'contact', 'edumaxim'].includes(activeTab) && (
+                        <button className="btn btn-danger" onClick={handleDeleteSingleton}>
+                            DELETE {activeTab.toUpperCase()}
                         </button>
                     )}
                 </div>
@@ -157,8 +183,9 @@ function Admin({ onLogout, onDataChange }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.projects.map((project, index) => (
-                                    <tr key={index}>
+                                {sortByStardate(data.projects).map((project) => {
+                                    const index = data.projects.indexOf(project);
+                                    return <tr key={project.id}>
                                         <td className="checkbox-col">
                                             <input
                                                 type="checkbox"
@@ -175,8 +202,8 @@ function Admin({ onLogout, onDataChange }) {
                                                 EDIT
                                             </button>
                                         </td>
-                                    </tr>
-                                ))}
+                                    </tr>;
+                                })}
                             </tbody>
                         </table>
                     </div>
@@ -195,8 +222,9 @@ function Admin({ onLogout, onDataChange }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.mission_update.map((mission, index) => (
-                                    <tr key={index}>
+                                {sortByStardate(data.mission_update).map((mission) => {
+                                    const index = data.mission_update.indexOf(mission);
+                                    return <tr key={mission.id}>
                                         <td className="checkbox-col">
                                             <input
                                                 type="checkbox"
@@ -212,8 +240,8 @@ function Admin({ onLogout, onDataChange }) {
                                                 EDIT
                                             </button>
                                         </td>
-                                    </tr>
-                                ))}
+                                    </tr>;
+                                })}
                             </tbody>
                         </table>
                     </div>
@@ -264,6 +292,22 @@ function Admin({ onLogout, onDataChange }) {
                         <button className="btn btn-primary" onClick={openNewModal}>
                             EDIT CONTACT
                         </button>
+                        <button className="btn btn-danger" onClick={handleDeleteSingleton}>
+                            DELETE CONTACT
+                        </button>
+                    </div>
+                )}
+
+                {activeTab === 'edumaxim' && (
+                    <div className="data-view">
+                        {[
+                            ['TITLE', data.edumaxim.title], ['SUBTITLE', data.edumaxim.subtitle],
+                            ['DESCRIPTION', data.edumaxim.description], ['MISSION', data.edumaxim.mission],
+                            ['FEATURES', (data.edumaxim.features || []).join('\n')],
+                            ['PLATFORM LINK', data.edumaxim.platform_link], ['CALL TO ACTION', data.edumaxim.call_to_action],
+                        ].map(([label, value]) => <div className="view-item" key={label}><label>{label}:</label><p>{value}</p></div>)}
+                        <button className="btn btn-primary" onClick={openNewModal}>EDIT EDUMAXIM</button>
+                        <button className="btn btn-danger" onClick={handleDeleteSingleton}>DELETE EDUMAXIM</button>
                     </div>
                 )}
             </div>
@@ -432,6 +476,25 @@ function Admin({ onLogout, onDataChange }) {
                                             onChange={(e) => setEditingItem({ ...editingItem, linkedin: e.target.value })}
                                             placeholder="https://linkedin.com/in/username"
                                         />
+                                    </div>
+                                </>
+                            )}
+
+                            {activeTab === 'edumaxim' && (
+                                <>
+                                    {['title', 'subtitle', 'description', 'mission', 'platform_link', 'call_to_action'].map((field) => (
+                                        <div className="form-group" key={field}>
+                                            <label>{field.replaceAll('_', ' ').toUpperCase()}</label>
+                                            {['description', 'mission'].includes(field) ? (
+                                                <textarea value={editingItem[field] || ''} onChange={(e) => setEditingItem({ ...editingItem, [field]: e.target.value })} />
+                                            ) : (
+                                                <input type="text" value={editingItem[field] || ''} onChange={(e) => setEditingItem({ ...editingItem, [field]: e.target.value })} />
+                                            )}
+                                        </div>
+                                    ))}
+                                    <div className="form-group">
+                                        <label>FEATURES (ONE PER LINE)</label>
+                                        <textarea value={(editingItem.features || []).join('\n')} onChange={(e) => setEditingItem({ ...editingItem, features: e.target.value.split('\n').map((value) => value.trim()).filter(Boolean) })} />
                                     </div>
                                 </>
                             )}

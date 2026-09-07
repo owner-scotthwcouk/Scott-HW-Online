@@ -10,6 +10,15 @@ export const portfolioSchema = z.object({
   mission_update: z.array(z.object({ id, stardate: text, update_title: text.min(1), update_desc: text })).max(1000),
   contact: z.object({ email: z.union([z.literal(''), z.string().email()]), github: url, linkedin: url }),
   about: z.object({ title: text, image: text.refine(v => !/^[a-z]+:/i.test(v) || /^https?:\/\//i.test(v)), bio: text, inspiration: text, closing: text }),
+  edumaxim: z.object({
+    title: text.default(''),
+    subtitle: text.default(''),
+    description: text.default(''),
+    mission: text.default(''),
+    features: z.array(text).max(100).default([]),
+    platform_link: url.default(''),
+    call_to_action: text.default(''),
+  }),
 }).refine(data => [data.projects, data.mission_update].every(items => new Set(items.map(item => item.id)).size === items.length), 'Duplicate record IDs');
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');

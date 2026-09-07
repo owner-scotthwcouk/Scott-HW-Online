@@ -6,7 +6,10 @@ export function createPortfolioData({ id, name }) {
     projects: [],
     mission_update: [],
     contact: { email: '', github: '', linkedin: '' },
-    edumaxim: {},
+    edumaxim: {
+      title: '', subtitle: '', description: '', mission: '', features: [],
+      platform_link: '', call_to_action: '',
+    },
   };
 }
 
@@ -45,9 +48,17 @@ export function saveEduMaxim(data, edumaxim) {
   return { ...data, edumaxim: { ...edumaxim } };
 }
 
+export function sortByStardate(items) {
+  return [...items].sort((a, b) => String(a.stardate || '').localeCompare(String(b.stardate || ''), undefined, { numeric: true }));
+}
+
 export function normalizePortfolio(data) {
   return { ...data,
     projects: (data.projects || []).map(item => ({ ...item, id: item.id || globalThis.crypto.randomUUID() })),
     mission_update: (data.mission_update || []).map(item => ({ ...item, id: item.id || globalThis.crypto.randomUUID() })),
+    edumaxim: {
+      title: '', subtitle: '', description: '', mission: '', features: [], platform_link: '', call_to_action: '',
+      ...(data.edumaxim || {}),
+    },
   };
 }
