@@ -6,6 +6,7 @@ function Admin({ onLogout, onDataChange }) {
     const [data, setData] = useState(null);
     const [saving, setSaving] = useState(false);
     const [activeTab, setActiveTab] = useState('projects');
+    const [sortDirections, setSortDirections] = useState({ projects: 'desc', mission_update: 'desc' });
     const [showModal, setShowModal] = useState(false);
     const [editingItem, setEditingItem] = useState(null);
     const [selectedItems, setSelectedItems] = useState([]);
@@ -152,6 +153,18 @@ function Admin({ onLogout, onDataChange }) {
                 </div>
 
                 <div className="admin-actions">
+                    {(activeTab === 'projects' || activeTab === 'mission_update') && (
+                        <label>
+                            Sort by stardate{' '}
+                            <select
+                                value={sortDirections[activeTab]}
+                                onChange={(event) => setSortDirections({ ...sortDirections, [activeTab]: event.target.value })}
+                            >
+                                <option value="desc">Newest first</option>
+                                <option value="asc">Oldest first</option>
+                            </select>
+                        </label>
+                    )}
                     <button className="btn btn-primary" onClick={openNewModal}>
                         + {activeTab === 'projects' ? 'NEW PROJECT' : activeTab === 'mission_update' ? 'NEW MISSION' : activeTab === 'edumaxim' ? 'EDIT EDUMAXIM' : `EDIT ${activeTab.toUpperCase()}`}
                     </button>
@@ -183,7 +196,7 @@ function Admin({ onLogout, onDataChange }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {sortByStardate(data.projects).map((project) => {
+                                {sortByStardate(data.projects, sortDirections.projects).map((project) => {
                                     const index = data.projects.indexOf(project);
                                     return <tr key={project.id}>
                                         <td className="checkbox-col">
@@ -222,7 +235,7 @@ function Admin({ onLogout, onDataChange }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {sortByStardate(data.mission_update).map((mission) => {
+                                {sortByStardate(data.mission_update, sortDirections.mission_update).map((mission) => {
                                     const index = data.mission_update.indexOf(mission);
                                     return <tr key={mission.id}>
                                         <td className="checkbox-col">

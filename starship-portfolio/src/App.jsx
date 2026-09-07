@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Admin from "./Admin";
 import LoginModal from "./LoginModal";
-import { sortByStardate } from "./portfolioData";
+import { currentStardate, sortByStardate } from "./portfolioData";
 import "./App.css";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [stardate, setStardate] = useState("");
+  const [stardate, setStardate] = useState(() => currentStardate());
 
   useEffect(() => {
     // Fetch data from data.json
@@ -23,13 +23,7 @@ function App() {
 
     // Update stardate every second
     const interval = setInterval(() => {
-      const now = new Date();
-      const year = now.getFullYear();
-      const start = new Date(year, 0, 0);
-      const diff = now - start;
-      const oneDay = 1000 * 60 * 60 * 24;
-      const dayOfYear = Math.floor(diff / oneDay);
-      setStardate(`${year}.${dayOfYear.toString().padStart(3, "0")}`);
+      setStardate(currentStardate());
     }, 1000);
 
     return () => clearInterval(interval);

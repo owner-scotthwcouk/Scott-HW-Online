@@ -48,8 +48,24 @@ export function saveEduMaxim(data, edumaxim) {
   return { ...data, edumaxim: { ...edumaxim } };
 }
 
-export function sortByStardate(items) {
-  return [...items].sort((a, b) => String(a.stardate || '').localeCompare(String(b.stardate || ''), undefined, { numeric: true }));
+export function currentStardate(now = new Date()) {
+  const year = now.getFullYear();
+  const days = (now - new Date(year, 0, 0)) / 86400000;
+  const daysInYear = new Date(year, 1, 29).getMonth() === 1 ? 366 : 365;
+  return (1000 * (year - 2000) + 1000 * days / daysInYear).toFixed(2);
+}
+
+export function sortByStardate(items, direction = 'desc') {
+  return [...items].sort((a, b) => {
+    const left = String(a.stardate || '').trim();
+    const right = String(b.stardate || '').trim();
+    // Keep undated entries last in either direction.
+    if (!left || !right) return left ? -1 : right ? 1 : 0;
+    const comparison = Number.isFinite(Number(left)) && Number.isFinite(Number(right))
+      ? Number(left) - Number(right)
+      : left.localeCompare(right, undefined, { numeric: true });
+    return direction === 'asc' ? comparison : -comparison;
+  });
 }
 
 export function normalizePortfolio(data) {
